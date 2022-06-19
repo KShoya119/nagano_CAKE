@@ -20,12 +20,12 @@ Rails.application.routes.draw do
   namespace :admin do
     get 'genres' => 'genres#index'
     post 'genres' => 'genres#create'
-    get 'genres/edit' => 'genres#edit'
-    #patch 'genres/:id' => 'genres#update'
+    get 'genres/:id/edit' => 'genres#edit', as: 'edit_genres'
+    patch 'genres/:id' => 'genres#update', as: 'genres_update'
   end
   namespace :admin do
-    get 'items'
-    get 'items/new'
+    get 'items' => 'items#index'
+    get 'items/new' => 'items#new'
     post 'items' => 'items#create'
     get 'items/show' => 'items#show'
     get 'items/edit' => 'items/edit'
@@ -72,10 +72,15 @@ Rails.application.routes.draw do
   passwords:     'public/customers/passwords',
   registrations: 'public/customers/registrations'
   }
+  
   devise_for :admins, controllers: {
   sessions:      'admin/admins/sessions',
   passwords:     'admin/admins/passwords',
-  registrations: 'admin/admins/registrations'
+  registrations: 'admin/admins/registrations',
   }
+  
+  namespace :admin do
+    devise_for :admins, :path => "/"
+  end
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end
