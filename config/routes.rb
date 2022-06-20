@@ -13,9 +13,9 @@ Rails.application.routes.draw do
   end
   namespace :admin do
     get 'customers' => 'customers#index'
-    get 'customers/show' => 'customers/show'
-    get 'customers/edit' => 'customers#edit'
-    #patch 'custmers/:id' => 'custmers/update'
+    get 'customers/:id/show' => 'customers#show', as: "customer_show"
+    get 'customers/:id/edit' => 'customers#edit'
+    patch 'custmers/:id' => 'custmers#update', as: "update_customer"
   end
   namespace :admin do
     get 'genres' => 'genres#index'
@@ -27,9 +27,9 @@ Rails.application.routes.draw do
     get 'items' => 'items#index'
     get 'items/new' => 'items#new'
     post 'items' => 'items#create'
-    get 'items/show' => 'items#show'
-    get 'items/edit' => 'items/edit'
-    #patch 'items/:id' => 'items#update'
+    get 'items/:id/show' => 'items#show', as: "items_show"
+    get 'items/:id/edit' => 'items#edit', as: "items_edit"
+    patch 'items/:id' => 'items#update', as: "update_items"
   end
   namespace :admin do
     root to: 'homes#top'

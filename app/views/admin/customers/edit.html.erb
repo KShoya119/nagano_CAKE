@@ -1,2 +1,14 @@
-<h1>Admin::Customers#edit</h1>
-<p>Find me in app/views/admin/customers/edit.html.erb</p>
+<h3><%= @customer.last_name %> <%= @customer.first_name %>さんの会員情報編集</h3>
+
+<div>
+  <p>会員ID <%= @customer.id %></p>
+  <%= form_with model: @customer, url: admin_update_customer_path do |f| %>
+    <div class="field">
+      <p>氏名</p>
+      <%= f.text_field :last_name, autofocus: true, required: true, class: 'last_name' %>
+      <%= f.text_field :first_name, autofocus: true, required: true, class: 'first_name' %>
+    </div>
+    
+  <% end %>
+  
+</div>
