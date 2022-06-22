@@ -1,4 +1,4 @@
 class Admin::OrdersController < ApplicationController
-  def index
+  def show
   end
 end
