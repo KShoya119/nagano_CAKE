@@ -1,6 +1,5 @@
 class Item < ApplicationRecord
   has_one_attached :image
-  has_many :genres
   
   def get_image(width, height)
     unless image.attached?

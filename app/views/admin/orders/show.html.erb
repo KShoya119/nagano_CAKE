@@ -1,2 +1,39 @@
-<h1>Admin::Orders#show</h1>
-<p>Find me in app/views/admin/orders/index.html.erb</p>
+<h1>注文履歴詳細</h1>
+  
+<table>
+  <tr><th>購入者</th><td><%=  %> <%=  %></td></tr>
+  <tr><th>注文日</th><td><%=  %></td></tr>
+  <tr><th>配送先</th><td><%=  %></td></tr>
+  <tr><th>支払い方法</th><td><%=  %></td></tr>
+  <tr><th>注文ステータス</th><td><%=  %></td></tr>
+</table>
+
+<div>
+  <div class="col-8">
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <td>商品ID</td>
+        <td>商品名</td>
+        <td>税抜価格</td>
+      </tr>
+    </thead>
+  
+    <tbody>
+      <%  %>
+        <tr>
+          <td><%=  %></td>
+          <td></td>
+          <td><%=  %></td>
+          <td></tr>
+      <%  %>
+    </tbody>
+  </table>
+  </div>
+  
+  <table>
+    <tr><th>商品合計</th><td></td></tr>
+    <tr><th>送料</th><td></td></tr>
+    <tr><th>請求金額</th><td></td></tr>
+  </table>
+</div>

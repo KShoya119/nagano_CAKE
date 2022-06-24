@@ -19,7 +19,7 @@ Rails.application.routes.draw do
   end
   namespace :admin do
     get 'genres' => 'genres#index'
-    post 'genres' => 'genres#create'
+    post 'genres' => 'genres#create', as: 'genres_create'
     get 'genres/:id/edit' => 'genres#edit', as: 'edit_genres'
     patch 'genres/:id' => 'genres#update', as: 'genres_update'
   end
