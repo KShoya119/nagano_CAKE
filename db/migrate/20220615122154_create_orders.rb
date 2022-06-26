@@ -8,6 +8,7 @@ class CreateOrders < ActiveRecord::Migration[6.1]
       t.integer :is_active
       t.integer :postage, null: false
       t.integer :total, null: false
+      t.integer :customer_id, null: false
 
       t.timestamps
     end

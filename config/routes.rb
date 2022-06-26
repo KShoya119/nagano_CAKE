@@ -61,11 +61,11 @@ Rails.application.routes.draw do
   get 'orders/index' => 'public/orders#index'
   get 'orders/show' => 'public/orders#show'
   
-  get 'addresses/index' => 'public/addresses#index'
-  get 'addresses/edit' => 'public/addresses#edit'
+  get 'addresses' => 'public/addresses#index'
+  get 'addresses/:id/edit' => 'public/addresses#edit', as: "addresses_edit"
   post 'addresses' => 'public/addresses#create'
-  #patch 'addresses/:id' => 'public/addresses#update'
-  #delete 'addresses/:id' => 'public/addresses#destroy'
+  patch 'addresses/:id' => 'public/addresses#update', as: "update_addresses"
+  delete 'addresses/:id' => 'public/addresses#destroy', as: "destroy_addresses"
   
   devise_for :customers, controllers: {
   sessions:      'public/customers/sessions',
