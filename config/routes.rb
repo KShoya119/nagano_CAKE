@@ -27,7 +27,7 @@ Rails.application.routes.draw do
     get 'items' => 'items#index'
     get 'items/new' => 'items#new'
     post 'items' => 'items#create'
-    get 'items/:id/show' => 'items#show', as: "items_show"
+    get 'items/:id' => 'items#show', as: "items_show"
     get 'items/:id/edit' => 'items#edit', as: "items_edit"
     patch 'items/:id' => 'items#update', as: "update_items"
   end
@@ -40,7 +40,7 @@ Rails.application.routes.draw do
   get 'homes/about' => 'public/homes#about'
   
   get '/items' => 'public/items#index'
-  get '/items/show' => 'public/items#show'
+  get '/items/:id' => 'public/items#show', as: "items_show"
   
   get 'customers/mypage' => 'public/customers#show'
   get 'customers/edit' => 'public/customers#edit'
@@ -49,10 +49,10 @@ Rails.application.routes.draw do
   patch 'customers/withdrawal' => 'public/customers#withdrawal'
   
   get 'cart_items' => 'public/cart_items#index'
-  #patch 'cart_items/:id' => 'public/cort_items#update'
-  #delete 'cart_items/:id' => 'public/cort_items#destroy'
-  #delete 'cart_items/destroy_all' => 'public/cort_items#destroy_all'
-  post 'cart_items' => 'public/cort_items#create'
+  patch 'cart_items/:id' => 'public/cart_items#update'
+  delete 'cart_items/:id' => 'public/cart_items#destroy'
+  delete 'cart_items/destroy_all' => 'public/cart_items#destroy_all'
+  post 'cart_items' => 'public/cart_items#create'
   
   get 'orders/new' => 'public/orders#new'
   post 'orders/confirm' => 'public/orders#confirm'
