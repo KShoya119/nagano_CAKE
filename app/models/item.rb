@@ -1,6 +1,6 @@
 class Item < ApplicationRecord
   has_one_attached :image
-  belongs_to :cort_item
+  has_many :cort_item
   
   def get_image(width, height)
     unless image.attached?
