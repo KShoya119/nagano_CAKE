@@ -1,12 +1,15 @@
 <h3>注文情報入力</h3>
 
-<h3>支払い方法</h3>
-  <%= form_with model: @order, url: orders_new_path do |f| %>
-    <%= f.radio_button :pay_method, :card %>
-    <%= f.label :pay_method, "クレジットカード", {value: :card, style: "display: inline-block;"} %>
-    <%= f.radio_button :pay_method, :bank %>
-    <%= f.label :pay_method, "銀行振込", {value: :bank, style: "display: inline-block;"} %>
-  <% end %>
+<%= form_with model: @order, url: orders_new_path do |f| %>
+  <h3>支払い方法</h3>
+    <label><%= f.radio_button :pay_method, "クレジットカード" %> クレジットカード</label>
+    <label><%= f.radio_button :pay_method, "銀行振込" %> 銀行振込</label>
 
-<h3>お届け先</h3>
+  <h3>お届け先</h3>
+    <label>
+      <%= f.radio_button :postcode_mail do %> ご自身の住所
+        <%=  f.text :postcode_mail, @customer.postal_code %>
+      <% end %>
+    </label>
 
+<% end %>
