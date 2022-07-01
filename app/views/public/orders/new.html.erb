@@ -7,9 +7,11 @@
 
   <h3>お届け先</h3>
     <label>
-      <%= f.radio_button :postcode_mail do %> ご自身の住所
-        <%=  f.text :postcode_mail, @customer.postal_code %>
-      <% end %>
+       <label>
+          <%= f.radio_button [:postcode_mail, :address_mail, :name_mail], "1" do %>
+            <%= @customer.postal_code %>
+          <% end %>
+        </label>
     </label>
 
 <% end %>
