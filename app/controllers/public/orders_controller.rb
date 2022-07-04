@@ -8,14 +8,15 @@ class Public::OrdersController < ApplicationController
   def confirm
     @order = Order.new(order_params)
     @order.postage = 800
-    @customer = current_customer
-    @cart_items = @customer.cart_items
+    @order.customer = current_customer
+    @cart_items = current_customer.cart_items
     @total = @cart_items.inject(0) { |sum, item| sum + item.sum_of_price }
+    @order.total = (@order.postage) + (@total)
     @order.pay_method = params[:order][:pay_method]
     if params[:order][:selected_address] == "0"
-      @order.postcode_mail = @customer.postal_code
-      @order.address_mail = @customer.address
-      @order.name_mail = @customer.full_name
+      @order.postcode_mail = current_customer.postal_code
+      @order.address_mail = current_customer.address
+      @order.name_mail = current_customer.full_name
       
     elsif params[:order][:selected_address] == "1"
       @address = Address.find(params[:order][:address])
@@ -31,27 +32,32 @@ class Public::OrdersController < ApplicationController
   end
 
   def complete
+   
+  end
+  
+  def create
     @order = Order.new(order_params)
+    @order.customer_id = current_customer.id
     @order.save
-    @cart_items = current_customer.cart_items
+    @cart_items = current_customer.cart_items.all
       @cart_items.each do |cart_item|
-        @order_items = @order.order_detail.new
-        @order_items.item_id = order_detail.item.id
-        @order_items.price = order_detail.item.price
-        @order_items.quantity = order_detail.amount
-        @order_items.save
+        @order_details = OrderDetail.new
+        @order_details.item_id = cart_item.item.id
+        @order_details.order_id = @order.id
+        @order_details.price = cart_item.item.price
+        @order_details.amount = cart_item.amount
+        @order_details.save
       current_customer.cart_items.destroy_all
       end
     redirect_to orders_complete_path
   end
-  
-  def create
-  end
 
   def index
+    @orders = current_customer.orders
   end
 
   def show
+    @order = Order.find(params[:id])
   end
   
   def update
@@ -59,6 +65,6 @@ class Public::OrdersController < ApplicationController
   
   private
   def order_params
-    params.require(:order).permit(:postcode_mail, :address_mail, :name_mail, :pay_method, :is_active, :postage, :total, :selected_address, :address)
+    params.require(:order).permit(:postcode_mail, :address_mail, :name_mail, :pay_method, :is_active, :postage, :total)
   end
 end

@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
  
   namespace :admin do
-  #patch 'order_details/:id' => 'order_details#update'
+  patch 'order_details/:id' => 'order_details#update'
   end
  
   namespace :admin do
@@ -59,7 +59,7 @@ Rails.application.routes.draw do
   get 'orders/complete' => 'public/orders#complete'
   post 'orders' => 'public/orders#create'
   get 'orders/index' => 'public/orders#index'
-  get 'orders/show' => 'public/orders#show'
+  get 'orders/:id' => 'public/orders#show', as: "orders_show"
   
   get 'addresses' => 'public/addresses#index'
   get 'addresses/:id/edit' => 'public/addresses#edit', as: "addresses_edit"

@@ -3,16 +3,23 @@
   
   <h4>注文情報</h4>
     <table class="col-6 table table-striped">
-      <tr><th>注文日</th><td></td></tr>
-      <tr><th>配送先</th><td></td></tr>
-      <tr><th>支払い方法</th><td></td></tr>
+      <tr><th>注文日</th><td><%= @order.created_at.strftime('%Y/%m/%d') %></td></tr>
+      <tr>
+        <th>配送先</th>
+        <td>
+          〒<%= @order.postcode_mail %><br>
+            <%= @order.address_mail %><br>
+            <%= @order.name_mail %>
+        </td>
+      </tr>
+      <tr><th>支払い方法</th><td><%= @order.pay_method_i18n %></td></tr>
     </table>
   
   <h4>請求情報</h4>
     <table class="col-3 table table-striped">
-      <tr><th>商品合計</th><td></td></tr>
-      <tr><th>配送料</th><td></td></tr>
-      <tr><th>ご請求額</th><td></td></tr>
+      <tr><th>商品合計</th><td><%= (@order.total) - (@order.postage) %></td></tr>
+      <tr><th>配送料</th><td><%= @order.postage %></td></tr>
+      <tr><th>ご請求額</th><td><%= @order.total %></td></tr>
     </table>
   
   <h4>注文内容</h4>
@@ -26,12 +33,14 @@
       </tr>
     </thead>
     <tbody>
-      <tr>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-      </tr>
+      <% @order.order_details.each do |detail| %>
+        <tr>
+          <td><%= detail.item.name %></td>
+          <td><%= detail.item.add_tax_price.to_s(:delimited) %></td>
+          <td><%= detail.amount %></td>
+          <td><%= ((detail.item.add_tax_price) * (detail.amount)).to_s(:delimited) %></td>
+        </tr>
+      <% end %>
     </tbody>
   </table>
   

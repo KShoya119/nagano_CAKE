@@ -62,3 +62,4 @@ gem "refile-mini_magick"
 gem 'image_processing', '~> 1.2'
 gem 'kaminari','~> 1.2.1'
 gem "enum_help"
+gem "pry-rails"

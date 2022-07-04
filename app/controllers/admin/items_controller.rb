@@ -8,8 +8,10 @@ class Admin::ItemsController < ApplicationController
   end
   
   def create
-    item = Item.new(item_params)
-    item.save
+    @item = Item.new(item_params)
+    @item.is_active = true
+    @item.genre_id = 0
+    @item.save!
     redirect_to admin_items_path
   end
 

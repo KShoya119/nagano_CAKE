@@ -27,7 +27,7 @@
     <table class="col-4 table table-striped">
       <tr><th>送料</th><td><%= @order.postage %></td></tr>
       <tr><th>商品合計</th><td><%= @total %></td></tr>
-      <tr><th>請求金額</th><td><%= (@order.postage) + (@total) %></td></tr>
+      <tr><th>請求金額</th><td><%= @order.total %></td></tr>
     </table>
   </div>
   
@@ -37,6 +37,13 @@
     <tr><th>お届け先</th><td><%= @order.postcode_mail %><%= @order.address_mail %>  <%= @order.name_mail %></td></tr>
   </table>
   
+  <%= f.hidden_field :postage %>
+  <%= f.hidden_field :postcode_mail %>
+  <%= f.hidden_field :address_mail %>
+  <%= f.hidden_field :name_mail %>
+  <%= f.hidden_field :pay_method %>
+  <%= f.hidden_field :total %>
+ 
   <%= f.submit "注文を確定する" %>
   <% end %>
 </div>
