@@ -9,7 +9,7 @@ Rails.application.routes.draw do
   end
  
   namespace :admin do
-    get 'orders/show' => 'orders#show'
+    get 'orders/:id' => 'orders#show', as: "orders_show"
   end
   namespace :admin do
     get 'customers' => 'customers#index'

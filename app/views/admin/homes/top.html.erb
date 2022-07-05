@@ -11,11 +11,25 @@
       </tr>
     </thead>
     <tbody>
-      <tr>
-        <td></td>
-        <td></td>
-        <td></td>
-      </tr>
+      <% @orders.each do |order| %>
+        <tr>
+          <td class=text-derk>
+            <%= link_to admin_orders_show_path(order.id) do %>
+              <div class="text-dark"><%= order.created_at.strftime('%Y/%m/%d %H:%M:%S') %></div>
+            <% end %>
+          </td>
+          <td><%= order.customer.full_name %></td>
+          <td>
+          <% @sum = 0 %>
+          <% order.order_details.each do |detail| %>
+            <% detail.amount %>
+            <% @sum += detail.amount %>
+          <% end %>
+          <%= @sum %>
+          </td>
+        </tr>
+        <%= paginate @orders %>
+      <% end %>
     </tbody>
   </table>
   </div>
