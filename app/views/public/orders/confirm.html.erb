@@ -1,9 +1,9 @@
 <div class="container">
-  <h3>注文情報確認</h3>
+  <h4 class="col-2 text-center bg-secondary ml-5">注文情報確認</h4>
   
   <%= form_with model: @order, url: orders_path do |f| %>
   <div class="row">
-    <table class="col-8 table table-striped">
+    <table class="col-7 table table-striped mb-4">
       <thead>
         <tr>
           <th>商品名</th>
@@ -24,7 +24,7 @@
       </tbody>
     </table>
   
-    <table class="col-4 table table-striped">
+    <table class="col-4 table table-striped ml-auto">
       <tr><th>送料</th><td><%= @order.postage %></td></tr>
       <tr><th>商品合計</th><td><%= @total %></td></tr>
       <tr><th>請求金額</th><td><%= @order.total %></td></tr>
@@ -32,7 +32,7 @@
   </div>
   
   
-  <table>
+  <table cellpadding="10">
     <tr><th>支払い方法</th><td><%= @order.pay_method_i18n %></td></tr>
     <tr><th>お届け先</th><td><%= @order.postcode_mail %><%= @order.address_mail %>  <%= @order.name_mail %></td></tr>
   </table>
@@ -44,6 +44,6 @@
   <%= f.hidden_field :pay_method %>
   <%= f.hidden_field :total %>
  
-  <%= f.submit "注文を確定する" %>
+  <%= f.submit "注文を確定する", class: "btn btn-success" %>
   <% end %>
 </div>
