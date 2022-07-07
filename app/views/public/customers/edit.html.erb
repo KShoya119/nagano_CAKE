@@ -1,8 +1,10 @@
-<h1>会員情報編集</h1>
+<div class="container my-3">
+  
+<h2 class="col-3 text-center bg-secondary mb-4">会員情報編集</h2>
 
 
 <%= form_with model: @customer, url: customers_path do |f| %>
-  <table>
+  <table cellpadding="7">
     <tr>
       <th>氏名</th>
       <td><%= f.text_field :last_name, autofocus: true, required: true, class: 'last_name' %></td>
@@ -35,7 +37,11 @@
       <td><%= f.email_field :email, autofocus: true, autocomplete: "email" %></td>
     </tr>
   </table>
-  <%= f.submit "編集内容を保存", class: "btn btn-success"%>
-  <%= link_to "退会する", customers_unsubscribe_path, class: "btn btn-danger" %>
+  
+  <div class="row mt-3">
+    <div class="mr-4"><%= f.submit "編集内容を保存", class: "btn btn-success"%></div>
+    <div><%= link_to "退会する", customers_unsubscribe_path, class: "btn btn-danger" %></div>
+  </div>
 <% end %>
 
+</div>

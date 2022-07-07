@@ -11,34 +11,86 @@
   </head>
 
   <body>
-    <div class="cotainer">
-      <header class="navbar navbar-expand-lg">
+    
+      <header class="navbar navbar-expand-lg border-bottom border-dark py-4">
         <%= link_to root_path do %>
-          <h1>LOGO</h1>
+          <h1 class="text-dark border border-dark py-1 px-4">LOGO</h1>
         <% end %>
             
         <ul class="navbar-nav ml-auto">
           <% if customer_signed_in? %>
-            <li><%= link_to "マイページ", customers_mypage_path %></li>
-            <li><%= link_to "商品一覧", items_path %></li>
-            <li><%= link_to "カート", cart_items_path %></li>
-            <li><%= link_to "ログアウト", destroy_customer_session_path, method: :delete %></li>
+            <li>
+              <%= link_to customers_mypage_path do %>
+                <div class="text-dark mr-4">マイページ</div>
+              <% end %>
+            </li>
+            <li>
+              <%= link_to items_path do %>
+                <div class="text-dark mr-4">商品一覧</div>
+              <% end %>
+            </li>
+            <li>
+              <%= link_to cart_items_path do %>
+                <div class="text-dark mr-4">カート</div>
+              <% end %>
+            </li>
+            <li>
+              <%= link_to destroy_customer_session_path, method: :delete do %>
+                <div class="text-dark mr-4">ログアウト</div>
+              <% end %>
+            </li>
           <% elsif admin_signed_in? %>
-            <li><%= link_to "商品一覧", admin_items_path %></li>
-            <li><%= link_to "会員一覧", admin_customers_path %></li>
-            <li><%= link_to "注文履歴一覧", admin_root_path %></li>
-            <li><%= link_to "ジャンル一覧", admin_genres_path %></li>
-            <li><%= link_to "ログアウト", destroy_admin_session_path, method: :delete %></li>
+            <li>
+              <%= link_to admin_items_path do %>
+                <div class="text-dark mr-4">商品一覧</div>
+              <% end %>
+            </li>
+            <li>
+              <%= link_to admin_customers_path do %>
+                <div class="text-dark mr-4">会員一覧</div>
+              <% end %>
+            </li>
+            <li>
+              <%= link_to admin_root_path do %>
+                <div class="text-dark mr-4">注文履歴一覧</div>
+              <% end %>
+            </li>
+            <li>
+              <%= link_to admin_genres_path do %>
+                <div class="text-dark mr-4">ジャンル一覧</div>
+              <% end %>
+            </li>
+            <li>
+              <%= link_to destroy_admin_session_path, method: :delete do %>
+                <div class="text-dark mr-4">ログアウト</div>
+              <% end %>
+            </li>
           <% else %>
-            <li><%= link_to "About", homes_about_path %></li>
-            <li><%= link_to "商品一覧", items_path %></li>
-            <li><%= link_to "新規登録", new_customer_registration_path %></li>
-            <li><%= link_to "ログイン", new_customer_session_path %></li>
+            <li>
+              <%= link_to homes_about_path do %>
+                <div class="text-dark mr-4">About</div>
+              <% end %>
+            </li>
+            <li>
+              <%= link_to items_path do %>
+                <div class="text-dark mr-4">商品一覧</div>
+              <% end %>
+            </li>
+            <li>
+              <%= link_to new_customer_registration_path do %>
+                <div class="text-dark mr-4">新規登録</div>
+              <% end %>
+            </li>
+            <li>
+              <%= link_to new_customer_session_path do %>
+                <div class="text-dark mr-4">ログイン</div>
+              <% end %>
+            </li>
           <% end %>
         </ul>
         
       </header>
-      <%= yield %>
-    </div>
+      <body><%= yield %></body>
+      <footer class="border-top border-dark pt-5"></footer>
   </body>
 </html>
