@@ -1,4 +1,5 @@
 class Public::CartItemsController < ApplicationController
+   before_action :move_to_signed_in
   def index
     @customer = current_customer
     @cart_items = @customer.cart_items
@@ -40,5 +41,11 @@ class Public::CartItemsController < ApplicationController
   private
   def cart_item_params
     params.require(:cart_item).permit(:item_id, :customer_id, :amount, :selected_address, :address)
+  end
+  
+  def move_to_signed_in
+    unless customer_signed_in?
+      redirect_to  '/customers/sign_in'
+    end
   end
 end

@@ -23,7 +23,13 @@
             <% end %>
           </td>
           <td><%= customer.email %></td>
-          <td></td>
+          <td>
+            <% if customer.is_active %>
+              <div class="text-success">有効</div>
+            <% elsif %>
+              退会
+            <% end %>
+          </td>
         </tr>
       <% end %>
       <%= paginate @customers %>

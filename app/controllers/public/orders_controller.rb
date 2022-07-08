@@ -1,4 +1,5 @@
 class Public::OrdersController < ApplicationController
+  before_action :move_to_signed_in
   def new
     @order = Order.new
     @customer = current_customer
@@ -66,5 +67,11 @@ class Public::OrdersController < ApplicationController
   private
   def order_params
     params.require(:order).permit(:postcode_mail, :address_mail, :name_mail, :pay_method, :is_active, :postage, :total)
+  end
+  
+  def move_to_signed_in
+    unless customer_signed_in?
+      redirect_to  '/customers/sign_in'
+    end
   end
 end

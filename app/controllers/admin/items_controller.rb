@@ -1,4 +1,5 @@
 class Admin::ItemsController < ApplicationController
+  before_action :move_to_signed_in
   def index
     @items = Item.page(params[:page])
   end
@@ -12,7 +13,7 @@ class Admin::ItemsController < ApplicationController
     @item.is_active = true
     @item.genre_id = 0
     @item.save!
-    redirect_to admin_items_path
+    redirect_to admin_items_show_path(@item.id)
   end
 
   def show
@@ -32,5 +33,11 @@ class Admin::ItemsController < ApplicationController
   private
   def item_params
     params.require(:item).permit(:name, :introduction, :price, :image, :genre_id)
+  end
+  
+  def move_to_signed_in
+    unless admin_signed_in?
+      redirect_to  '/admins/sign_in'
+    end
   end
 end
