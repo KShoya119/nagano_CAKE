@@ -7,8 +7,7 @@ class Public::CartItemsController < ApplicationController
   end
   
   def update
-    @customer = current_customer
-    @cart_items = @customer.cart_items
+    @cart_items = CartItem.find(params[:id])
     @cart_items.update(cart_item_params)
     redirect_to cart_items_path
   end
